@@ -1,27 +1,9 @@
-import React from 'react';
-import {scaleLinear} from 'd3';
 import _ from 'underscore';
-
-class App extends React.Component {
-  componentDidMount() {
-    // console.log(document);
-    renderStoreCanvas(this.props.data_list);
-  }
-
-  render() {
-    let style_obj = {
-      border: '1px dotted red'
-    };
-
-    return (
-      <canvas id="canvas" width="800" height="1200" style={style_obj}></canvas>
-    );
-  }
-}
+import {scaleLinear} from 'd3';
 
 // reads store, draws on #canvas using path methods
 // data acts as coords to path methods
-function renderStoreCanvas(data_list, mid=500) {
+export function drawDataList(data_list, mid=500) {
   // var mid = 500;
   var min_bucket = mid - 400;
   var max_bucket = mid + 400;
@@ -96,5 +78,3 @@ function drawPathOnCanvas(ctx, bucket_arr, min_bucket, max_bucket, low_bound_dis
   }
   ctx.stroke();
 }
-
-export default App;
