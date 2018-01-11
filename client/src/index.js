@@ -1,23 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import App from './App.js';
 
-function getStuff() {
-  return fetch('/seestore')
-    .then( function(res) {
-      return res.json();
-    })
-    .then(doit);
-}
-
-function doit(a){
+function startAppWithData(server_store){
   ReactDOM.render(
-    <div>
-      <h1>yo i here</h1>
-      <h2>hot reload bitch</h2>
-      <h4>{a.hello}</h4>
-    </div>,
+    <App data_list={server_store.data_list} />,
     document.getElementById('root')
   );
 }
 
-getStuff();
+fetch('/seestore')
+  .then( function(res) {
+    return res.json();
+  })
+  .then(startAppWithData);

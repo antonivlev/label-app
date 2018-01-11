@@ -3,9 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "d3": "^4.12.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-scripts": "1.0.17"
+    "react-scripts": "1.0.17",
+    "underscore": "^1.8.3"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -13,6 +15,5 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-
   "proxy": "http://localhost:3001"
 }

@@ -14,11 +14,12 @@ app.post('/setdata', function(req, res) {
   console.log('got post /setdata');
   console.log('\treceived data from python: ');
   // io.emit('update-status', 'server: got data from python');
-  console.log('\t'+req.body);
+  console.log(req.body);
 
   res.statusCode = 200;
   res.end()
   server_store.data_list = [];
+
 
   console.log('\tmaking resolutions');
   // io.emit('update-status', 'server: making resolutions...');
@@ -38,8 +39,9 @@ app.post('/setdata', function(req, res) {
 
 app.get('/seestore', function(req, res) {
   console.log('got get /seestore');
+  // var ob = {some_pair56: server_store.data_list[0].x[0][101]};
   res.json(server_store);
   console.log('\tsent server_store');
 });
 
-app.listen(3001, () => console.log('label-app on port 3001'));
+app.listen(3001, () => console.log('label-app on port 3001!!!!!!!!!'));

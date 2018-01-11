@@ -2,10 +2,7 @@
   "name": "label-app",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
-  "scripts": {
-    "start": "node app.js"
-  },
+  "main": "server.js",
   "dependencies": {
     "body-parser": "^1.18.2",
     "d3": "^4.12.2",

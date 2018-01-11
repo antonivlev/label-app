@@ -18,7 +18,7 @@ var makeResolution = function(vals, num_buckets) {
 	// fill up resolution
 	_.map(vals, function assignToBucket(val, i) {
 		var bucket_index = Math.round(s(i));
-		resol[bucket_index].push(val.toPrecision(4));
+		resol[bucket_index].push(val);
 	});
 
 	// only leave min and max in each bucket
