@@ -1,35 +1,13 @@
-.left {
-	width: 64%;
-	float: left;
-
-	/* color: #aaa;
-	border-style: dashed;
-	border-color: #ccc;
-	text-align: center;
-	font-size: 40px; */
-}
-
-.right {
-	width: 35%;
-	height: 98%;
-	right: 8px;
-	position: fixed;
-
-	/* color: #aaa;
-	border-style: dashed;
-	border-color: #ccc;
-	text-align: center;
-	font-size: 40px; */
+div {
+	margin: 0px 0px 0px 0px;
+	font-family: "Courier New";
 }
 
 video {
-	width: 100%;
-	float: left;
-	border: 5px solid orange;
-}
+	float: right;
+	position: fixed;
+	right: 8px;
 
-div {
-	margin: 0px 0px 0px 0px;
-	border-width: 3px;
-	font-family: "Courier New";
+	width: 30%;
+	/* border: 5px solid orange; */
 }

@@ -1,18 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import DataDrawer from './DataDrawer.js';
 
+import DataDrawer from './DataDrawer.js';
+import LabelOptions from './LabelOptions.js';
 
 function getElement(server_store) {
   return (
     <div>
-      <div className="right">
-        <video src="./Work3_Gavin_Compress.mp4" controls></video>
+      <div>
+        <input type="checkbox" id="video-lock"/>
+        <label htmlFor="video-lock">lock video</label>
       </div>
 
-      <div className="left">
-        <DataDrawer data_list={server_store.data_list} />
-      </div>
+      <DataDrawer id="bigby" data_list={server_store.data_list} />
+      <video src="./Work3_Gavin_Compress.mp4" controls></video>
+      <LabelOptions />
     </div>
   );
 }
