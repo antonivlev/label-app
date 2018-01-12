@@ -3,33 +3,51 @@ import ReactDOM from 'react-dom';
 
 import DataDrawer from './DataDrawer.js';
 import LabelOptions from './LabelOptions.js';
+import MyVideo from './MyVideo.js';
 
-function getElement(server_store) {
-  return (
-    <div>
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      ctx: null,
+      pixelsToTime: null
+    };
+
+    this.setContext = this.setContext.bind(this);
+  }
+
+  setContext(context) {
+    this.setState( {ctx: context} );
+  }
+
+  render() {
+    return (
       <div>
-        <input type="checkbox" id="video-lock"/>
-        <label htmlFor="video-lock">lock video</label>
+        <div>
+          <input type="checkbox" id="video-lock"/>
+          <label htmlFor="video-lock">lock video</label>
+        </div>
+
+        <DataDrawer id="bigby"
+          context={this.state.ctx}
+          onContextCreated={this.setContext}
+          data_list={this.props.server_store.data_list} />
+        <MyVideo context={this.state.ctx} />
+        <LabelOptions />
       </div>
-
-      <DataDrawer id="bigby" data_list={server_store.data_list} />
-      <video src="./Work3_Gavin_Compress.mp4" controls></video>
-      <LabelOptions />
-    </div>
-  );
+    );
+  }
 }
 
-function startAppWithData(server_store){
-  ReactDOM.render(
-    getElement(server_store),
-    document.getElementById('root')
-  );
-}
-
-// fetch('/seestore')
-//   .then( function(res) {
-//     return res.json();
-//   })
-//   .then(startAppWithData);
-
-startAppWithData({});
+fetch('/seestore')
+  .then( function(res) {
+    return res.json();
+  })
+  .then((server_store) => {
+    console.log(server_store);
+    ReactDOM.render(
+      <App server_store={server_store} />,
+      document.getElementById('root')
+    );
+  });

@@ -44,4 +44,9 @@ app.get('/seestore', function(req, res) {
   console.log('\tsent server_store');
 });
 
-app.listen(3001, () => console.log('label-app on port 3001!!!!!!!!!'));
+app.get('/peekstore', function(req, res) {
+  console.log('got get /peekstore');
+  res.json(server_store.data_list[0]['t'][0]);
+});
+
+app.listen(3001, () => console.log('label-app on port 3001'));

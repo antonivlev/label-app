@@ -3,7 +3,7 @@ import LabelOption from './LabelOption.js';
 
 let style_obj = {
   position: 'fixed',
-  top: 230,
+  top: 240,
   right: 0
 };
 

@@ -2,7 +2,6 @@ const d3 = require('d3');
 const _ = require('underscore');
 
 var makeResolution = function(vals, num_buckets) {
-	//console.log(vals);
 	/* vals - list of values [12.78, 345, 43.5 ...]
 	   num_buckets - number of buckets to shove them into
 
@@ -30,7 +29,8 @@ var makeResolution = function(vals, num_buckets) {
 }
 
 var makeResolutions = function(vals) {
-	var zoom_levels = [600000, 200000, 100000, 10000, 1000];
+	// var zoom_levels = [600000, 200000, 100000, 10000, 1000];
+	var zoom_levels = [5000, 1000];
 	var makeResWithVals = _.partial(makeResolution, vals);
 	var reses = _.map(zoom_levels, makeResWithVals);
 	return reses;

@@ -1,18 +1,17 @@
 import _ from 'underscore';
 import {scaleLinear} from 'd3';
 
-// reads store, draws on #canvas using path methods
+// reads data_list, draws on canvas_el (getElementById) using path methods
 // data acts as coords to path methods
-export function drawDataList(data_list, mid=500) {
+export function drawDataList(data_list, ctx, mid, z) {
   // var mid = 500;
   var min_bucket = mid - 400;
   var max_bucket = mid + 400;
-  var z = 4;
   var num_files = data_list.length;
-  var ctx = document.getElementById("canvas").getContext("2d");
   ctx.clearRect(0, 0, 800, 1200);
 
   var n = 0;
+  // console.log(data_list);
   // for each file
   _.range(0, num_files).map( (file_ind) => {
     //draw file
