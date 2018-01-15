@@ -5,7 +5,7 @@ const express = require('express');
 const app = express();
 
 //stores the data and window info
-const server_store = {'hello': 'test'};
+const server_store = {};
 
 app.use(express.static('public'));
 app.use(bodyParser.json({limit: '5000mb'}));
@@ -26,10 +26,12 @@ app.post('/setdata', function(req, res) {
 
   // convert values to resolutions
   req.body.data_list.map( (file_dict_from_python) => {
-    var file_obj = {};
-    for (var dim in file_dict_from_python) {
-      file_obj[dim] = makeResolutions(file_dict_from_python[dim]);
-    }
+    server_store.tvals = makeResolutions(file_dict_from_python['t']);
+
+    let file_obj = {};
+    ['x', 'y', 'z'].map( (dim) =>
+      file_obj[dim] = makeResolutions(file_dict_from_python[dim])
+    );
     server_store.data_list.push(file_obj);
   } );
 

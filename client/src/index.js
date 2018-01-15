@@ -5,23 +5,26 @@ import DataDrawer from './DataDrawer.js';
 import LabelOptions from './LabelOptions.js';
 import MyVideo from './MyVideo.js';
 
+import './style.css';
+
+import * as d3 from 'd3';
+
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       ctx: null,
-      pixelsToTime: null
+      mid_bucket: 0,
+      z: 0,
     };
-
-    this.setContext = this.setContext.bind(this);
-  }
-
-  setContext(context) {
-    this.setState( {ctx: context} );
   }
 
   render() {
+    let timeToPixel = getTimeToPixel(
+      this.props.server_store.tvals, this.state.mid_bucket, this.state.z
+    );
+
     return (
       <div>
         <div>
@@ -29,15 +32,45 @@ class App extends React.Component {
           <label htmlFor="video-lock">lock video</label>
         </div>
 
-        <DataDrawer id="bigby"
-          context={this.state.ctx}
-          onContextCreated={this.setContext}
-          data_list={this.props.server_store.data_list} />
-        <MyVideo context={this.state.ctx} />
+        <DataDrawer context={this.state.ctx}
+          data_list={this.props.server_store.data_list}
+          updateParentState={this.setState.bind(this)}
+          mid_bucket={this.state.mid_bucket}
+          z={this.state.z}
+        />
+        <MyVideo
+          timeToPixel={timeToPixel}
+          updateParentState={this.setState.bind(this)}
+        />
         <LabelOptions />
       </div>
     );
   }
+}
+
+function getTimeToPixel(tvals, mid, z) {
+  let seq = tvals[z];
+  let interval = getInterval(seq);
+  let buck0 = interval[0],
+      buck1 = interval[1];
+
+  var s = d3.scaleLinear()
+    .domain( [d3.mean(seq[buck0]), d3.mean(seq[buck1])] )
+    .range( [400-(mid-buck0), 400-(mid-buck1)] );
+
+  return s;
+}
+
+function getInterval(seq) {
+  let first_ind = 10;
+  while (seq[first_ind] === []) {
+    first_ind++
+  };
+
+  let second_ind = first_ind+100;
+  while (seq[second_ind] === []) {second_ind++};
+
+  return [first_ind, second_ind];
 }
 
 fetch('/seestore')
@@ -45,7 +78,6 @@ fetch('/seestore')
     return res.json();
   })
   .then((server_store) => {
-    console.log(server_store);
     ReactDOM.render(
       <App server_store={server_store} />,
       document.getElementById('root')

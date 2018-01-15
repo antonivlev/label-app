@@ -6,8 +6,16 @@ div {
 video {
 	float: right;
 	position: fixed;
-	right: 8px;
+	right: 0px;
 
 	width: 30%;
 	/* border: 5px solid orange; */
+}
+
+#canvas-video {
+	position: absolute;
+	top: 29px;
+	right: 489px;
+	border: 1px solid orange;
+	z-index: -1;
 }

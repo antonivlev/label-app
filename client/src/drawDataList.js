@@ -11,7 +11,6 @@ export function drawDataList(data_list, ctx, mid, z) {
   ctx.clearRect(0, 0, 800, 1200);
 
   var n = 0;
-  // console.log(data_list);
   // for each file
   _.range(0, num_files).map( (file_ind) => {
     //draw file
