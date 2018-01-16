@@ -1,35 +1,35 @@
 div {
-	margin: 0px 0px 0px 0px;
-	font-family: "Courier New";
+  margin: 0px 0px 0px 0px;
+  font-family: "Courier New";
 }
 
 video {
-	float: right;
-	position: fixed;
-	right: 0px;
+  float: right;
+  position: fixed;
+  right: 0px;
 
-	width: 30%;
-	/* border: 5px solid orange; */
+  width: 30%;
+  /* border: 5px solid orange; */
 }
 
 #svg-video {
-	position: absolute;
-	top: 29px;
-	right: 489px;
-	border: 1px solid orange;
-	/* z-index: -1; */
-	pointer-events: none;
+  position: absolute;
+  top: 29px;
+  right: 489px;
+  border: 1px solid orange;
+  /* z-index: -1; */
+  pointer-events: none;
 }
 
 line {
-	stroke-width: 2;
-	stroke: red;
+  stroke-width: 2;
+  stroke: red;
 }
 
 rect {
-	pointer-events: visiblePainted;
-	fill: red;
-	opacity: 0.1;
+  pointer-events: visiblePainted;
+  fill: red;
+  opacity: 0.1;
 }
 
 rect:hover {
@@ -37,5 +37,5 @@ rect:hover {
 }
 
 label:hover {
-	color: red;
+  color: orange;
 }

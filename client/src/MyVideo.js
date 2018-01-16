@@ -13,24 +13,31 @@ class MyVideo extends React.Component {
   }
 
   componentDidMount() {
+    var that = this;
+
     let rects = d3.select('svg').selectAll('*');
     rects.call(d3.drag()
-      .on('drag', dragged)
+      .on('drag', function(d, i, nodes) {
+        // update state according to what happened in the drag event.
+        // bit of back and forth with the scale funcs
+        let startp = that.props.timeToPixel(that.state.startTime);
+        let new_startt = that.props.timeToPixel.invert(startp+d3.event.dx);
+        that.setState( {startTime: new_startt} );
+
+        let currentp = that.props.timeToPixel(that.state.currentTime);
+        let new_currentt = that.props.timeToPixel.invert(currentp+d3.event.dx);
+        that.setState( {currentTime: new_currentt} );
+      })
     );
   }
 
   render() {
     let startTime = this.state.startTime;
-    let timeToPixel = this.props.timeToPixel
+    let timeToPixel = this.props.timeToPixel;
 
     let startx = timeToPixel(this.state.startTime),
         currentx = timeToPixel(this.state.currentTime),
         endx = timeToPixel(startTime+this.state.duration);
-
-
-    // bind data for listener
-    d3.select('svg').selectAll('*')
-      .data( [startx, startx, currentx, currentx, endx , endx] );
 
     return (
       <div style={ {position: 'absolute', top: 0, right: 50} }>
@@ -51,15 +58,6 @@ class MyVideo extends React.Component {
       </div>
     );
   }
-}
-
-let dragged = function(d, i, nodes) {
-  console.log(nodes);
-  // d3.selectAll(nodes).attr('x', d = d3.event.x-10);
-
-  // nodes.map( function(node) {
-  //   d3.select(node).attr('x', d = d3.event.x-10);
-  // });
 }
 
 export default MyVideo;

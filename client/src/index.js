@@ -28,7 +28,7 @@ class App extends React.Component {
       <div>
         <div>
           <input type="checkbox" id="video-lock"/>
-          <label htmlFor="video-lock">lock video</label>
+          <label htmlFor="video-lock">stelle</label>
         </div>
 
         <DataDrawer
