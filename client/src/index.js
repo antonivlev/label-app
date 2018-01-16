@@ -24,11 +24,13 @@ class App extends React.Component {
       this.props.server_store.tvals, this.state.mid_bucket, this.state.z
     );
 
+    console.log(timeToPixel);
+
     return (
       <div>
         <div>
           <input type="checkbox" id="video-lock"/>
-          <label htmlFor="video-lock">stelle</label>
+          <label htmlFor="video-lock">lock video</label>
         </div>
 
         <DataDrawer

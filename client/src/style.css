@@ -21,9 +21,14 @@ video {
   pointer-events: none;
 }
 
-line {
+.video-line {
   stroke-width: 2;
   stroke: red;
+}
+
+.event-line {
+  stroke-width: 0.5;
+  stroke: orange;
 }
 
 rect {
