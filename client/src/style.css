@@ -12,10 +12,30 @@ video {
 	/* border: 5px solid orange; */
 }
 
-#canvas-video {
+#svg-video {
 	position: absolute;
 	top: 29px;
 	right: 489px;
 	border: 1px solid orange;
-	z-index: -1;
+	/* z-index: -1; */
+	pointer-events: none;
+}
+
+line {
+	stroke-width: 2;
+	stroke: red;
+}
+
+rect {
+	pointer-events: visiblePainted;
+	fill: red;
+	opacity: 0.1;
+}
+
+rect:hover {
+  opacity: 0.6;
+}
+
+label:hover {
+	color: red;
 }

@@ -6,6 +6,11 @@ import {drawDataList} from './drawDataList.js';
 
 
 class DataDrawer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.ctx = null;
+  }
+
   handleKeys(e) {
     if (e.code === 'ArrowUp' || e.code === 'ArrowDown') {
       e.preventDefault();
@@ -39,7 +44,7 @@ class DataDrawer extends React.Component {
   }
 
   componentDidMount() {
-    this.props.updateParentState( {'ctx': document.getElementById('canvas-data').getContext('2d')} );
+    this.ctx = document.getElementById('canvas-data').getContext('2d');
     var that = this;
 
     // add listener for panning
@@ -57,32 +62,16 @@ class DataDrawer extends React.Component {
     document.addEventListener('keydown', (e) => {
       this.handleKeys(e);
     });
+
+    drawDataList(this.props.data_list, this.ctx, this.props.mid_bucket, this.props.z);
   }
 
   render() {
-    if (this.props.context !== null) {
-      drawDataList(
-        this.props.data_list,
-        this.props.context,
-        this.props.mid_bucket,
-        this.props.z
-      );
+    if (this.ctx !== null) {
+      drawDataList(this.props.data_list, this.ctx, this.props.mid_bucket, this.props.z);
     };
 
-    let style_obj = {
-      border: '1px dotted red'
-    };
-
-    let jsx_el = (
-      <canvas
-        id="canvas-data"
-        width="800"
-        height="1200"
-        style={style_obj}
-      ></canvas>
-    );
-
-    return jsx_el;
+    return <canvas id="canvas-data" width="800" height="1200"></canvas>;
   }
 }
 

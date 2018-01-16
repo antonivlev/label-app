@@ -14,9 +14,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      ctx: null,
       mid_bucket: 0,
-      z: 0,
+      z: 0
     };
   }
 
@@ -32,16 +31,14 @@ class App extends React.Component {
           <label htmlFor="video-lock">lock video</label>
         </div>
 
-        <DataDrawer context={this.state.ctx}
+        <DataDrawer
           data_list={this.props.server_store.data_list}
+          // so that data drawer updates mid bucket and z for video
           updateParentState={this.setState.bind(this)}
           mid_bucket={this.state.mid_bucket}
           z={this.state.z}
         />
-        <MyVideo
-          timeToPixel={timeToPixel}
-          updateParentState={this.setState.bind(this)}
-        />
+        <MyVideo timeToPixel={timeToPixel}/>
         <LabelOptions />
       </div>
     );
