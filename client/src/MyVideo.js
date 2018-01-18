@@ -49,14 +49,15 @@ class MyVideo extends React.Component {
 
     return (
       <div style={ {position: 'absolute', top: 0, right: 50} }>
+        {/* this svg is directly over the data canvas */}
         <svg id="svg-video" width="800" height="1200">
-          <rect x={startx-10} y="0" width="20" height="1200"/>
+          <rect className="video-rect" x={startx-10} y="0" width="20" height="1200"/>
           <line className="video-line" x1={startx} y1="0" x2={startx} y2="1200" />
 
-          <rect x={currentx-10} y="0" width="20" height="1200"/>
+          <rect className="video-rect" x={currentx-10} y="0" width="20" height="1200"/>
           <line className="video-line" x1={currentx} y1="0" x2={currentx} y2="1200" />
 
-          <rect x={endx-10} y="0" width="20" height="1200"/>
+          <rect className="video-rect" x={endx-10} y="0" width="20" height="1200"/>
           <line className="video-line" x1={endx} y1="0" x2={endx} y2="1200" />
 
           {eventLines}
