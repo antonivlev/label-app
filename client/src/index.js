@@ -38,8 +38,8 @@ class App extends React.Component {
           mid_bucket={this.state.mid_bucket}
           z={this.state.z}
         />
-        <MyVideo timeToPixel={timeToPixel} />
         <LabelOptions timeToPixel={timeToPixel} />
+        <MyVideo timeToPixel={timeToPixel} />
       </div>
     );
   }

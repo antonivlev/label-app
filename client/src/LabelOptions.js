@@ -12,10 +12,14 @@ class LabelOptions extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      timesList: [],
-      selectedLabel: null
+      timesList: [
+        [1481717805329.4575, 1481717806192.528]
+      ],
+      colourList: [],
+
+      selectedLabel: null,
+      selectedColour: 0
     }
-    this.selectLabel = this.selectLabel.bind(this);
   }
 
   componentDidMount() {
@@ -28,6 +32,8 @@ class LabelOptions extends React.Component {
           tlist.splice(this.state.selectedLabel, 1);
           this.setState( {'timesList': tlist} );
         }
+      } else if (e.code.includes('Digit')) {
+        this.setState( {'selectedColour': parseInt(e.key)} );
       }
     });
 
@@ -35,33 +41,40 @@ class LabelOptions extends React.Component {
       document.getElementById('svg-labels').style.pointerEvents = "none";
     });
 
+    // attach drag listener for drawing
     var that = this;
-    d3.select('#svg-labels').call(d3.drag()
-      .on('start', function() {
-        let timesList = that.state.timesList;
-        let pixelToTime = that.props.timeToPixel.invert;
-
-        let startp = pixelToTime(d3.event.sourceEvent.screenX);
-        timesList.push( [startp, startp+1] );
-        that.setState( {'timesList': timesList} );
-      })
-      .on('drag', function() {
-        let timesList = that.state.timesList;
-        let pixelToTime = that.props.timeToPixel.invert;
-
-        last(timesList)[1] = pixelToTime(d3.event.sourceEvent.screenX);
-        that.setState( {'timesList': timesList} );
-      })
-    );
-  }
-
-  selectLabel(e) {
-    console.log(e, this);
+    // d3.select('#svg-labels').call(d3.drag()
+    //   .on('start', function() {
+    //     if (d3.event.sourceEvent.altKey) {
+    //       let timesList = that.state.timesList;
+    //       let pixelToTime = that.props.timeToPixel.invert;
+    //
+    //       let startp = pixelToTime(d3.event.sourceEvent.screenX);
+    //       timesList.push( [startp, startp+1] );
+    //       that.setState( {'timesList': timesList} );
+    //     }
+    //   })
+    //   .on('drag', function() {
+    //     if (d3.event.sourceEvent.altKey) {
+    //       let timesList = that.state.timesList;
+    //       let pixelToTime = that.props.timeToPixel.invert;
+    //
+    //       last(timesList)[1] = pixelToTime(d3.event.sourceEvent.screenX);
+    //       that.setState( {'timesList': timesList} );
+    //     }
+    //   })
+    // );
   }
 
   render() {
-    let timeToPixel = this.props.timeToPixel;
     var that = this;
+    var colours = [
+      'green', 'blue', 'salmon', 'orange', 'purple',
+      'khaki', 'lightgreen', 'magenta', 'olive', 'brown'
+    ];
+
+    let timeToPixel = this.props.timeToPixel;
+
     let annos = this.state.timesList.map( function(region, i) {
       if (region.length === 2) {
         let x1 = timeToPixel( region[0] );
@@ -71,11 +84,17 @@ class LabelOptions extends React.Component {
             className="label-rect"
             x={x1} y="0"
             width={width} height="1200"
+            fill={colours[that.state.selectedColour]}
+
             onMouseOver={(e) => {
-              that.setState( {'selectedLabel': i} );
+              // console.log(e.bubbles);
+              // that.setState( {'selectedLabel': i} );
             }}
             onMouseOut={(e) => {
               that.setState( {'selectedLabel': null} );
+            }}
+            onMouseDown={(e) => {
+              console.log(e.bubbles);
             }}
           />
         );
@@ -97,7 +116,7 @@ class LabelOptions extends React.Component {
           {annos}
         </svg>
 
-        <p>labels</p>
+        <p>labels {this.state.selectedColour}</p>
         <LabelOption />
         <br/>
         <button>download selected</button>

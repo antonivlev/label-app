@@ -15,7 +15,8 @@ class MyVideo extends React.Component {
   componentDidMount() {
     var that = this;
 
-    d3.select('svg').selectAll('*').call(d3.drag()
+    // attach drag listeners to video rects and lines
+    d3.select('#svg-video').selectAll('*').call(d3.drag()
       .on('drag', function(d, i, nodes) {
         // update state according to what happened in the drag event.
         // bit of back and forth with the scale funcs

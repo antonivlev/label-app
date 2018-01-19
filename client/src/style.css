@@ -9,31 +9,27 @@ video {
   right: 0px;
 
   width: 30%;
-  /* border: 5px solid orange; */
 }
 
 canvas {
 	border: 1px dotted blue;
 }
 
+
+
 #svg-labels {
   position: absolute;
   bottom: -879px;
   right: 539px;
   border: 1px solid green;
-  /* z-index: -1; */
-  pointer-events: none;
+	/* pointer-events: none; */
 }
 
 .label-rect {
 	pointer-events: visiblePainted;
-	fill: gray;
 	opacity: 0.1;
 }
 
-.label-rect:hover {
-	opacity: 0.4;
-}
 
 
 
@@ -41,12 +37,12 @@ canvas {
   position: absolute;
   top: 29px;
   right: 489px;
-  /* border: 1px solid orange; */
-  /* z-index: -1; */
-  pointer-events: none;
+	pointer-events: none;
 }
 
 .video-line {
+	/*to prevent break in highlighting*/
+	/* pointer-events: none; */
   stroke-width: 1;
   stroke: red;
 }
@@ -57,11 +53,11 @@ canvas {
 }
 
 .video-rect {
-  pointer-events: visiblePainted;
+	pointer-events: visiblePainted;
   fill: red;
   opacity: 0.1;
 }
 
-rect:hover {
+.video-rect:hover {
   opacity: 0.4;
 }
