@@ -1,63 +1,31 @@
-div {
-  margin: 0px 0px 0px 0px;
-  font-family: "Courier New";
+body {
+  margin: 0px 0px 0px 0px
 }
 
-video {
-  float: right;
-  position: fixed;
-  right: 0px;
-
-  width: 30%;
-}
-
-canvas {
-	border: 1px dotted blue;
-}
-
-
-
-#svg-labels {
+#main {
   position: absolute;
-  bottom: -879px;
-  right: 539px;
-  border: 1px solid green;
-	/* pointer-events: none; */
+  border: 2px dotted orange;
 }
 
-.label-rect {
-	pointer-events: visiblePainted;
-	opacity: 0.1;
-}
-
-
-
-
-#svg-video {
+#overlay-circ {
   position: absolute;
-  top: 29px;
-  right: 489px;
-	pointer-events: none;
+  left: 100px;
+  top: 50px;
+  border: 2px dotted blue;
 }
 
-.video-line {
-	/*to prevent break in highlighting*/
-	/* pointer-events: none; */
-  stroke-width: 1;
-  stroke: red;
+#overlay-rect {
+  position: absolute;
+  left: 150px;
+  border: 2px dotted black;
 }
 
-.event-line {
-  stroke-width: 0.5;
-  stroke: orange;
+rect {
+  fill: blue;
+  opacity: 0.3;
 }
 
-.video-rect {
-	pointer-events: visiblePainted;
+circle {
   fill: red;
-  opacity: 0.1;
-}
-
-.video-rect:hover {
-  opacity: 0.4;
+  opacity: 0.3;
 }
