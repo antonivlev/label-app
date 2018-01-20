@@ -22,14 +22,17 @@ canvas {
   bottom: -879px;
   right: 539px;
   border: 1px solid green;
-	/* pointer-events: none; */
+	pointer-events: none;
 }
 
 .label-rect {
-	pointer-events: visiblePainted;
-	opacity: 0.1;
+  /* pointer-events: all; */
+	opacity: 0.2;
 }
 
+.label-rect:hover {
+	opacity: 0.4;
+}
 
 
 
